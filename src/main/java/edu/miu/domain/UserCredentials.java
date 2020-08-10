@@ -21,10 +21,10 @@ public class UserCredentials {
     @OneToOne(mappedBy="userCredentials", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Employee employee;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable ( name="Credential_Authority", joinColumns={@JoinColumn(name="credential_id")},
-            inverseJoinColumns={ @JoinColumn(name="authority_id", unique=true)} )
-    List<Authority> authority = new ArrayList<Authority>();
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable ( name="Credential_Authority", joinColumns={@JoinColumn(name="credential_id")},
+//            inverseJoinColumns={ @JoinColumn(name="authority_id", unique=true)} )
+//    List<Authority> authority = new ArrayList<Authority>();
 
     public String getUserName() {
         return userName;
@@ -56,12 +56,12 @@ public class UserCredentials {
     public void setUser(Employee employee) {
         this.employee = employee;
     }
-    public List<Authority> getAuthority() {
-        return authority;
-    }
-    public void setAuthority(List<Authority> authority) {
-        this.authority = authority;
-    }
+//    public List<Authority> getAuthority() {
+//        return authority;
+//    }
+//    public void setAuthority(List<Authority> authority) {
+//        this.authority = authority;
+//    }
 
     public Employee getEmployee() {
         return employee;
