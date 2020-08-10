@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Department {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "department_id")
     private long id;
 

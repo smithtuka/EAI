@@ -7,16 +7,16 @@ import java.util.List;
 @Entity(name = "GroupsToo")
 public class Group {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
     String group_name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    List<Authority> authority = new ArrayList<Authority>();
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    List<UserCredentials> userCredentials = new ArrayList<UserCredentials>();
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+//    List<Authority> authority = new ArrayList<Authority>();
+//
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    List<UserCredentials> userCredentials = new ArrayList<UserCredentials>();
 
 
     public long getId() {
@@ -33,22 +33,6 @@ public class Group {
 
     public void setGroup_name(String group_name) {
         this.group_name = group_name;
-    }
-
-    public List<Authority> getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(List<Authority> authority) {
-        this.authority = authority;
-    }
-
-    public List<UserCredentials> getUserCredentials() {
-        return userCredentials;
-    }
-
-    public void setUserCredentials(List<UserCredentials> userCredentials) {
-        this.userCredentials = userCredentials;
     }
 
 
