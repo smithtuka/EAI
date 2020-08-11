@@ -19,6 +19,16 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private List<Project> projects;
 
+    public Department() {
+    }
+
+    public Department(Long id, String name, List<Employee> employees, List<Project> projects) {
+        this.id = id;
+        this.name = name;
+        this.employees = employees;
+        this.projects = projects;
+    }
+
     public Long getId() {
         return id;
     }
