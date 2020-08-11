@@ -11,13 +11,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/projects")
 public class ProjectController {
+
     @Autowired
     private ProjectService projectService;
 
     @GetMapping("")
     public List<Project> findAll() {
-        List<Project> projects = projectService.findAll();
-        return projects;
+        return projectService.findAll();
     }
 
     @GetMapping("/{id}")
