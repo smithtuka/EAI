@@ -30,4 +30,11 @@ public class ProjectController {
     public void processAddNewProject(@RequestBody Project project) {
         projectService.save(project);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProjectById(@PathVariable("id") Long id) {
+        projectService.deleteById(id);
+    }
+
 }
