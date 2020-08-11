@@ -8,4 +8,5 @@ public interface ProjectService {
     public void save(Project project);
     public List<Project> findAll();
     public Project findOne(Long id);
+    public void deleteById(Long id);
 }

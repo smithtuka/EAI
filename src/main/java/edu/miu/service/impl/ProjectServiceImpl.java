@@ -31,4 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
         return projectDao.findById(id).orElse(null);
     }
 
+    public void deleteById(Long id){
+        projectDao.deleteById(id);
+    }
 }
