@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface RequisitionService {
     public Requisition createRequisition(Requisition requisition);
-    public Requisition getRequisition(long id);
+    public Requisition getRequisition(Long id);
     public  List<Requisition> findAll();
-    public void deleteRequisition(long id);
+    public void deleteRequisition(Long id);
     public Requisition updateRequisition(Requisition requisition, Long id);
 
 }

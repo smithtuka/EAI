@@ -1,5 +1,7 @@
 package edu.miu.domain;
 
+import edu.miu.validation.EmptyOrSize;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,12 +10,14 @@ public class Requisition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "requisition_id")
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
+    @EmptyOrSize(message = "Title {EmptyOrSize}")
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
+    @EmptyOrSize(message = "Description {EmptyOrSize}")
     private String description;
 
     @ManyToOne(fetch= FetchType.LAZY)
@@ -28,11 +32,11 @@ public class Requisition {
     @Column(name = "approval_status", length = 8)
     private ApprovalStatus status = ApprovalStatus.PENDING;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

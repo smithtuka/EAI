@@ -1,5 +1,7 @@
 package edu.miu.domain;
 
+import edu.miu.validation.EmptyOrSize;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,9 +10,10 @@ public class Department {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "department_id")
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
+    @EmptyOrSize(message = "Name {EmptyOrSize}")
     private String name;
 
     @OneToMany( mappedBy = "department")
@@ -33,7 +36,7 @@ public class Department {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,8 +1,11 @@
 package edu.miu.domain;
 
 import org.hibernate.validator.constraints.Range;
+import edu.miu.validation.EmptyOrSize;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -14,26 +17,37 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
-    private long id;
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "first_name", nullable = false)
+    @EmptyOrSize(min=2, max = 20, message= "First Name {EmptyOrSize}")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "First Name {Pattern.Alphabet}")
     private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    @EmptyOrSize(min=2, max = 20, message= "Last Name {EmptyOrSize}")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Last Name {Pattern.Alphabet}")
+    private String lastName;
+
+    @NotEmpty(message = "Email {NotEmpty}")
+    @Email(message = "{Email}")
+    private String email;
 
     @Column(name = "is_admin", nullable = false)
     private boolean admin = false;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
     @Range(min = 16, max= 70) // testing exception handling on validation
     @Column(nullable = false)
-    private Integer age = 0;
+    @NotNull(message = "Age {NotNull}")
+    @Min(value = 18, message = "{Min}")
+    private Integer age;
 
-    @Column(name = "hire_date", nullable = false)
+    @Column(name = "hire_date")
     private LocalDate hireDate;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "address_id")
+    @Valid
     private Address address;
 
     @OneToOne(fetch=FetchType.LAZY,  cascade = CascadeType.ALL)
@@ -45,6 +59,7 @@ public class Employee {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
+    @Valid
     private Department department;
 
 //    @ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
@@ -57,11 +72,11 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private Set<Project> projects = new HashSet<Project>();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -161,5 +176,12 @@ public class Employee {
         this.projects = projects;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 }
