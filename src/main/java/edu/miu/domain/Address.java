@@ -5,6 +5,7 @@ import edu.miu.validation.EmptyOrSize;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Email;
 
 @Entity
 public class Address {
@@ -24,10 +25,16 @@ public class Address {
     @Column(length = 255)
     @EmptyOrSize(message = "City {EmptyOrSize}")
     private String city;
+    @Email
+    private String email;
 
     @OneToOne(mappedBy = "address", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
     private Employee  employee;
+
+    public Address() {
+
+    }
 
     public Long getId() {
         return id;
@@ -68,6 +75,5 @@ public class Address {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
 
 }
