@@ -1,5 +1,7 @@
 package edu.miu.domain;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -23,6 +25,7 @@ public class Employee {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Range(min = 16, max= 70) // testing exception handling on validation
     @Column(nullable = false)
     private Integer age = 0;
 
