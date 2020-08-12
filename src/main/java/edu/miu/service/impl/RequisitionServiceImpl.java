@@ -21,7 +21,7 @@ public class RequisitionServiceImpl implements RequisitionService {
     }
 
     @Override
-    public Requisition getRequisition(long id) {
+    public Requisition getRequisition(Long id) {
         return requisitionDao.findById(id)
                 .orElseThrow( () -> new RequisitionNotFoundException(id));
     }
@@ -34,7 +34,7 @@ public class RequisitionServiceImpl implements RequisitionService {
     }
 
     @Override
-    public void deleteRequisition(long id) {
+    public void deleteRequisition(Long id) {
          requisitionDao.deleteById(id);
     }
 
