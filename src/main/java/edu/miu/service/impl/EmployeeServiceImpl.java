@@ -1,5 +1,7 @@
 package edu.miu.service.impl;
 
+import edu.miu.aspect.exception.EmployeeNotFoundException;
+import edu.miu.aspect.exception.NoDataFoundException;
 import edu.miu.dao.EmployeeDao;
 import edu.miu.domain.Employee;
 import edu.miu.service.EmployeeService;
@@ -24,7 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findById(Long id) {
-        return employeeDao.findById(id).get();
+        return employeeDao.findById(id)
+                .orElseThrow( () -> new EmployeeNotFoundException(id) );
+
     }
 
     @Override
@@ -39,6 +43,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return employeeDao.findAll();
+        List<Employee> employees = employeeDao.findAll();
+        if(employees.isEmpty()) throw new NoDataFoundException();
+        return employees;
     }
 }

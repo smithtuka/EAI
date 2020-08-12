@@ -1,5 +1,7 @@
 package edu.miu.service.impl;
 
+import edu.miu.aspect.exception.NoDataFoundException;
+import edu.miu.aspect.exception.RequisitionNotFoundException;
 import edu.miu.domain.Requisition;
 import edu.miu.dao.RequisitionDao;
 import edu.miu.service.RequisitionService;
@@ -20,12 +22,15 @@ public class RequisitionServiceImpl implements RequisitionService {
 
     @Override
     public Requisition getRequisition(long id) {
-        return requisitionDao.getOne(id);
+        return requisitionDao.findById(id)
+                .orElseThrow( () -> new RequisitionNotFoundException(id));
     }
 
     @Override
     public List<Requisition> findAll() {
-        return requisitionDao.findAll();
+        List<Requisition> requisitions = requisitionDao.findAll();
+        if(requisitions.isEmpty()) throw new NoDataFoundException();
+        return requisitions;
     }
 
     @Override
