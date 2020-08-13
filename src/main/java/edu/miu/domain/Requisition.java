@@ -16,8 +16,7 @@ public class Requisition {
     @EmptyOrSize(message = "Title {EmptyOrSize}")
     private String title;
 
-    @Column(nullable = false, length = 255)
-    @EmptyOrSize(message = "Description {EmptyOrSize}")
+    @EmptyOrSize(min = 10, max = 255, message = "Description {EmptyOrSize}")
     private String description;
 
     @ManyToOne(fetch= FetchType.LAZY)
@@ -25,7 +24,7 @@ public class Requisition {
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id", nullable = false)
+    @JoinColumn(name = "project_id")
     private Project project;
 
     @Enumerated(EnumType.STRING)

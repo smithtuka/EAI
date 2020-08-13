@@ -42,7 +42,7 @@ public class Employee {
     @Min(value = 18, message = "{Min}")
     private Integer age;
 
-    @Column(name = "hire_date")
+    @Column(name = "hire_date", nullable = true)
     private LocalDate hireDate;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
