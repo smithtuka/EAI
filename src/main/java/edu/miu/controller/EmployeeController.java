@@ -21,7 +21,7 @@ public class EmployeeController {
     public void save(@Valid @RequestBody Employee employee) {
         employeeService.save(employee);
     }
-    
+
 
     @GetMapping("/{id}")
     public Employee findById(@Valid @PathVariable("id") Long employeeId) {

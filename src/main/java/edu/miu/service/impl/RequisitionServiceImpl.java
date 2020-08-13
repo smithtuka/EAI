@@ -1,5 +1,6 @@
 package edu.miu.service.impl;
 
+
 import edu.miu.aspect.exception.NoDataFoundException;
 import edu.miu.aspect.exception.RequisitionNotFoundException;
 import edu.miu.dao.RequisitionDao;
@@ -13,13 +14,14 @@ import java.util.List;
 public class RequisitionServiceImpl implements RequisitionService {
     private final RequisitionDao requisitionDao;
 
+
     public RequisitionServiceImpl(RequisitionDao requisitionDao) {
         this.requisitionDao = requisitionDao;
     }
 
     @Override
-    public Requisition createRequisition(Requisition requisition) {
-        return requisitionDao.save(requisition);
+    public void createRequisition(Requisition requisition) {
+        requisitionDao.save(requisition);
     }
 
     @Override
@@ -45,4 +47,5 @@ public class RequisitionServiceImpl implements RequisitionService {
         requisitionDao.deleteById(id);
         return requisitionDao.save(requisition);
     }
+
 }
