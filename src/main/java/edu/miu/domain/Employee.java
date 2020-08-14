@@ -1,5 +1,7 @@
 package edu.miu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Range;
 import edu.miu.validation.EmptyOrSize;
 
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"id"})
 public class Employee {
 
     @Id
@@ -45,18 +48,22 @@ public class Employee {
     @Column(name = "hire_date", nullable = true)
     private LocalDate hireDate;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "address_id")
     @Valid
     private Address address;
 
+    @JsonIgnore
     @OneToOne(fetch=FetchType.LAZY,  cascade = CascadeType.ALL)
     @JoinColumn(name="user_credentials_id")
     private UserCredentials userCredentials;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employee")
     private List<Requisition> requisitions;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     @Valid
@@ -69,6 +76,7 @@ public class Employee {
 //    @OneToMany(mappedBy="manager")
 //    private Set<Employee> subordinates = new HashSet<Employee>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employee")
     private Set<Project> projects = new HashSet<Project>();
 
@@ -120,6 +128,7 @@ public class Employee {
         this.address = address;
     }
 
+    @JsonIgnore
     public List<Requisition> getRequisitions() {
         return requisitions;
     }
@@ -128,6 +137,7 @@ public class Employee {
         this.requisitions = requisitions;
     }
 
+    @JsonIgnore
     public Department getDepartment() {
         return department;
     }
@@ -160,6 +170,7 @@ public class Employee {
         this.admin = admin;
     }
 
+    @JsonIgnore
     public UserCredentials getUserCredentials() {
         return userCredentials;
     }
@@ -168,6 +179,7 @@ public class Employee {
         this.userCredentials = userCredentials;
     }
 
+    @JsonIgnore
     public Set<Project> getProjects() {
         return projects;
     }

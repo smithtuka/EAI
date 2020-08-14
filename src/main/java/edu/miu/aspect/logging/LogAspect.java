@@ -14,7 +14,7 @@ public class LogAspect {
 
     @Before("execution(* edu.miu..* .*(..))")
     public void error1LogAdvice(){
-        System.out.println( "_____We are all about quality _______" );
+
     }
 
 
@@ -29,7 +29,10 @@ public class LogAspect {
 //        System.out.println( joinPoint.getArgs().getClass().getName() + " is source of the exception");
     }
 
-
+    @Before("execution(* edu.miu..* .*(..))")
+    public void methodsNames(JoinPoint joinPoint){
+        System.out.println( "Method Name :" + joinPoint.getSignature().toShortString() );
+    }
 
 
 

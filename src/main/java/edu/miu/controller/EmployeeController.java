@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/employees")
 public class EmployeeController {
 
@@ -23,12 +24,14 @@ public class EmployeeController {
     }
 
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public Employee findById(@Valid @PathVariable("id") Long employeeId) {
         return employeeService.findById(employeeId);
     }
 
-    @GetMapping("")
+    @CrossOrigin
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Employee> findAllEmployees() {
         return employeeService.findAll();
     }

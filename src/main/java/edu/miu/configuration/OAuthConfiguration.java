@@ -13,14 +13,12 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
+public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
     @Autowired
     private TokenStore tokenStore;
-
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -40,9 +38,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("AppClientId")
-                .secret(passwordEncoder.encode("FooBar"))
-                .authorizedGrantTypes("app")
-                .redirectUris("http://localhost:8181/EaiOauthApp")
+                .secret(passwordEncoder.encode("secret"))
+                .authorizedGrantTypes("implicit")
+                .redirectUris("http://localhost:4200/")
                 .scopes("read")
                 .autoApprove(true);
     }

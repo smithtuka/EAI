@@ -1,10 +1,13 @@
 package edu.miu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.miu.validation.EmptyOrSize;
 
 import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"id"})
 public class Requisition {
 
     @Id
@@ -19,10 +22,12 @@ public class Requisition {
     @EmptyOrSize(min = 10, max = 255, message = "Description {EmptyOrSize}")
     private String description;
 
+    @JsonIgnore
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="employee_id", nullable = false)
     private Employee employee;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id")
     private Project project;

@@ -16,18 +16,14 @@ INSERT INTO `address` (address_id, city, street, zipcode) VALUES (1, 'Iowa City'
 INSERT INTO `address` (address_id, city, street, zipcode) VALUES (2, 'Orlando', 'Florida', '32801');
 
 -- Employees
-INSERT INTO `employee` (employee_id, is_admin, age, first_name, hire_date, last_name, address_id, department_id, user_credentials_id)
-VALUES (1, TRUE, 31, 'Curious', '1980-09-11', 'George', 1, 1, 'admin');
+INSERT INTO `employee` (employee_id, is_admin, age, first_name, hire_date, last_name, address_id, department_id, user_credentials_id) VALUES (1, TRUE, 31, 'Curious', '1980-09-11', 'George', 1, 1, 'admin');
 
-INSERT INTO `employee` (employee_id, is_admin, age, first_name, hire_date, last_name, address_id, department_id, user_credentials_id)
-VALUES (2, FALSE, 28, 'Allen', '1990-05-05', 'Rench', 2, 2, 'guest');
+INSERT INTO `employee` (employee_id, is_admin, age, first_name, hire_date, last_name, address_id, department_id, user_credentials_id) VALUES (2, FALSE, 28, 'Allen', '1990-05-05', 'Rench', 2, 2, 'guest');
 
 -- Projects
-INSERT INTO `project` (project_id, name, department_id, created_by)
-VALUES (1, 'Project 1', 1, 1);
+INSERT INTO `project` (project_id, name, department_id, created_by) VALUES (1, 'Project 1', 1, 1);
 
 -- Requisitions
-INSERT INTO `requisition` (requisition_id, description, approval_status, title, employee_id, project_id)
-VALUES (1, 'Description of requisition 1', 'PENDING', 'Requisition 1', 1, 1);
+INSERT INTO `requisition` (requisition_id, description, approval_status, title, employee_id, project_id) VALUES (1, 'Description', 'PENDING', 'Requisition 1', 1, 1);
 
 -- Groups

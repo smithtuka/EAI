@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserCredentialsDao extends JpaRepository<UserCredentials, Long> {
+    public UserCredentials findByUserName(String name);
 }
