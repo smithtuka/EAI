@@ -2,6 +2,7 @@ package edu.miu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import edu.miu.validation.EmptyOrSize;
 
 import javax.persistence.*;
