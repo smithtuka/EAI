@@ -4,6 +4,7 @@ import edu.miu.domain.Employee;
 import edu.miu.domain.Requisition;
 import edu.miu.service.EmployeeService;
 import edu.miu.service.RequisitionService;
+import edu.miu.service.impl.RequisitionMessageSender;
 import edu.miu.util.UtilityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class RequisitionController {
     @Autowired
     EmployeeService employeeService;
 
+    @Autowired
+    RequisitionMessageSender messageSender;
+
     @PostMapping("employees/{id}/requisitions")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void createRequisition(@PathVariable("id") Long id, @Valid @RequestBody Requisition requisition){
@@ -27,6 +31,7 @@ public class RequisitionController {
         requisition.setEmployee(emp);
         requisitionService.createRequisition(requisition);
         UtilityClass.sendingNotification(requisition);
+        messageSender.sendOrder(requisition);
     }
 
     @GetMapping("/{id}")
